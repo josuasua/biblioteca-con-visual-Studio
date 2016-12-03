@@ -1,0 +1,39 @@
+﻿@model GestionBibliotecaMVC.Models.Foto
+@{
+    ViewBag.Title = "Fotografia";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(Model => Model.idFoto)
+@using (Html.BeginForm("save", "Foto", FormMethod.Post, new {
+        enctype = "multipart/form-data"
+    })) {
+        <div class="container-fluid">
+            <div class="row">
+                <p>
+                    <img src="~/imagenes/@Model.imagen" style="min-height:100px;min-width:100px;max-width:300px;max-height:300px;"/>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <input name="file" id="file" type="file" accept="image/jpg,image/png" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+                <div class="col-lg-1">
+                    @Html.ActionLink("Cancelar", "Index", "Home", null, htmlAttributes: new {
+                   @class = "btn btn-danger"
+               })
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+

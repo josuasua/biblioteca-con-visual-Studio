@@ -1,0 +1,72 @@
+﻿@model IList<GestionBibliotecaMVC.Models.Libro>
+@{
+    ViewBag.Title = "Listado de Libros";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@ViewBag.Message
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>Titulo</h3>
+            </div>
+            <div class="col-lg-2">
+                <h3>Autor</h3>
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model) {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    @item.Titulo
+                </div>
+                <div class="col-lg-2">
+                    @item.Autor.Nombre @item.Autor.Apellidos
+                </div>
+                <div class="col-lg-2">
+                    @Html.ActionLink("Crear Ejemplares", "createUpdate", "Ejemplar", new {
+                   codLibro = @item.CodLibro
+               }, htmlAttributes: new {
+                   @class = "btn btn-primary"
+               })
+                </div>
+                <div class="col-lg-1">
+                    @Html.ActionLink("Editar", "createUpdate", new {
+                   codLibro = @item.CodLibro
+               }, htmlAttributes: new {
+                   @class = "btn btn-warning"
+               })
+                </div>
+                <div class="col-lg-1">
+                    @Html.ActionLink("Borrar", "delete", new {
+                   codLibro = @item.CodLibro
+               }, htmlAttributes: new {
+                   @class = "btn btn-danger"
+               })
+                </div>
+                <div class="col-lg-1">
+                    @Html.ActionLink("Ver Ejemplares", "Index","Ejemplar", new {
+                   codLibro = @item.CodLibro
+               }, htmlAttributes: new {
+                   @class = "btn btn-info"
+               })
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6  pull-left">
+                @Html.ActionLink("Crear Libro", "createUpdate", null, new {
+               @class = "btn btn-success"
+           })
+            </div>
+        </div>
+    </div>
+</section>
+
+
